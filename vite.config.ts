@@ -1,19 +1,40 @@
 /// <reference types="vitest" />
 /// <reference types="vite/client" />
 
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { UserConfigExport, defineConfig } from 'vite'
+import { fileURLToPath, URL } from 'node:url'
+import react from '@vitejs/plugin-react'  
 
-// https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [react()],
+export default () => {
+  const config: UserConfigExport = {
+    plugins: [
+      react(),
+    ],
+    define: {
+      'process.env': {
+        API_URL: process.env.VITE_API_URL,
+      }
+    },
+    test: {
+      globals: true,
+      environment: 'jsdom',
+      setupFiles: './src/setupTests.ts',
+      css: false,
+    },
+    resolve: {
+      alias: {
+        '@': fileURLToPath(new URL('./src', import.meta.url))
+      },
+      extensions: [
+        '.js',
+        '.json',
+        '.jsx',
+        '.mjs',
+        '.ts',
+        '.tsx',
+      ],
+    },
+  }
 
-  test: {
-    globals: true,
-    environment: 'jsdom',
-    setupFiles: './src/setupTests.ts',
-    // you might want to disable it, if you don't have tests that rely on CSS
-    // since parsing CSS is slow
-    css: false,
-  },
-})
+  return defineConfig(config)
+}
