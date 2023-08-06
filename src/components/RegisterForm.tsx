@@ -1,19 +1,23 @@
 import React, { useState } from 'react';
 import { useAuth } from '../hooks/useAuth';
+import { redirect } from 'react-router-dom';
 
-export const LoginForm: React.FC = () => {
+export const RegisterForm: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { loginAccount } = useAuth();
+  const { registerAccount } = useAuth();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      loginAccount(email, password);
-    } catch (error) {
-      throw new Error(error as string);
+      await registerAccount(email, password);
+
+      redirect('/login');
+      // eslint-disable-next-line
+    } catch (error: any) {
+      throw new Error(error);
     }
-  };
+  }
 
   return (
     <form onSubmit={handleSubmit}>
@@ -29,7 +33,7 @@ export const LoginForm: React.FC = () => {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
-      <button type="submit">Login</button>
+      <button type="submit">Register</button>
     </form>
-  );
-};
+  )
+}

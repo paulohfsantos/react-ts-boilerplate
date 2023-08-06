@@ -1,18 +1,23 @@
 import { createContext } from 'react';
 import { User } from '../types/Users';
+// import { AuthRequest } from '../types/Auth';
 
 interface AuthContextType {
   user: User;
-  token: string;
-  login: (token: string, user: User) => void;
+  // userRequest: AuthRequest;
+  // token: string;
+  loginAccount: (email: string, password: string) => Promise<void>;
+  registerAccount: (email: string, password: string) => Promise<void>;
   logout: () => void;
 }
 
 const initialState = {
   user: {} as User,
-  token: "",
+  // token: "",
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  login: (token: string, user: User) => {},
+  loginAccount: async (email: string, password: string) => {},
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  registerAccount: async (email: string, password: string) => {},
   logout: () => {}
 }
 
