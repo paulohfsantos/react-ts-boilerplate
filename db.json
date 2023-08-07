@@ -15,5 +15,17 @@
       "password": "$2a$10$9EGlX89EfHrYsiaDYADes.NM4hnS37Gn44lKqP64sq23J5VzdQldm",
       "id": 3
     }
+  ],
+
+  "products": [
+    {
+      "id": 1,
+      "name": "Coca-Cola",
+      "userId": 1,
+      "price": 5.00,
+      "description": "Refrigerante de cola",
+      "category": "Bebidas",
+      "quantity": 10
+    }
   ]
 }

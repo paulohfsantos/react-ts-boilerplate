@@ -1,5 +1,5 @@
 import { FC, PropsWithChildren, useState } from "react";
-import { setToken, removeToken } from "../../common/HandleToken";
+import { setToken, removeToken, setUserData } from "../../common/HandleToken";
 import { User } from "../../types/Users";
 import { AuthContext } from "./AuthContext";
 import { AuthService } from "../../services/auth";
@@ -16,6 +16,7 @@ export const AuthProvider: FC<PropsWithChildren> = ({ children }) => {
       data: { accessToken, user },
     } = await AuthService.register(email, password);
     setToken(accessToken);
+    setUserData(user);
     setUser(user);
   };
 
@@ -24,6 +25,7 @@ export const AuthProvider: FC<PropsWithChildren> = ({ children }) => {
       data: { accessToken, user },
     } = await AuthService.login(email, password);
     setToken(accessToken);
+    setUserData(user);
     setUser(user);
   };
 

@@ -16,7 +16,6 @@ export const AuthService = {
     password: string
   ): Promise<AxiosResponse<Auth>> => {
     const response = await api.post("/register", { email, password });
-    console.log(response.data);
     return response;
   },
 };

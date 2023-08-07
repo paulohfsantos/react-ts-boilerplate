@@ -1,4 +1,17 @@
 import { api } from "../api";
+import { User } from "../types/Users";
+
+function setUserData(data: User) {
+  localStorage.setItem("userData", JSON.stringify(data));
+}
+
+export function getUserData() {
+  const data = localStorage.getItem("userData");
+
+  if (!data) { return }
+
+  return JSON.parse(data);
+}
 
 function setToken(token: string) {
   localStorage.setItem("authToken", token);
@@ -35,4 +48,11 @@ async function isLogged() {
   return true;
 }
 
-export { setToken, getToken, removeToken, isLogged, isTokenValid };
+export {
+  setToken,
+  getToken,
+  removeToken,
+  isLogged,
+  isTokenValid,
+  setUserData
+};
