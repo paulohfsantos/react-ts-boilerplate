@@ -41,7 +41,7 @@ export const RegisterForm: React.FC = () => {
       await registerAccount(data.email, data.password);
       navigate("/");
     } catch (error: any) {
-      toast.error(error.message);
+      toast.error(error.response.data);
     }
   });
 

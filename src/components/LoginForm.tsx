@@ -5,6 +5,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { useEffect } from "react";
+// import { AxiosError } from "axios";
 
 interface IFormInput {
   email: string;
@@ -33,7 +34,7 @@ export const LoginForm: React.FC = () => {
       await loginAccount(data.email, data.password);
       navigate("/");
     } catch (error: any) {
-      toast.error(error.message);
+      toast.error(error.response.data);
     }
   });
 
