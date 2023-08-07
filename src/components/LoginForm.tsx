@@ -19,20 +19,28 @@ export const LoginForm: React.FC = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form
+      className="flex flex-col shadow-lg p-12 rounded-md gap-4 bg-neutral"
+      onSubmit={handleSubmit}
+    >
+      <h1 className="text-3xl font-bold mb-4">Login</h1>
       <input
+        className="input input-bordered"
         type="email"
         placeholder="Email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
       />
       <input
+        className="input border input-bordered"
         type="password"
         placeholder="Password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
-      <button type="submit">Login</button>
+      <button className="btn btn-primary" type="submit">
+        Login
+      </button>
     </form>
   );
 };
