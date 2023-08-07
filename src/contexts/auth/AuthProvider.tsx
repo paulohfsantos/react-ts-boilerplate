@@ -41,10 +41,5 @@ export const AuthProvider: FC<PropsWithChildren> = ({ children }) => {
     logout,
   };
 
-  useEffect(() => {
-    themeChange(false);
-    // 👆 false parameter is required for react project
-  }, []);
-
   return <AuthContext.Provider value={values}>{children}</AuthContext.Provider>;
 };

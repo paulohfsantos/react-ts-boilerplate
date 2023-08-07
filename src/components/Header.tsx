@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { useTheme } from "../hooks/useTheme";
 import { themeChange } from "theme-change";
 
 export const Header = () => {
