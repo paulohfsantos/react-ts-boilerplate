@@ -4,6 +4,11 @@
       "email": "paulohfsantos1@gmail.com",
       "password": "$2a$10$bkhvRx24yoBm8XsRNOwZWuxQ0jZqdUlJVIVwmupt5VovpbiDE5Uxa",
       "id": 1
+    },
+    {
+      "email": "a@a.com",
+      "password": "$2a$10$UFUVLWQXmHh9xQ7L/jFGPuOwwaGfrbrjFVFzNiARQkuZJnDpCQoE6",
+      "id": 2
     }
   ]
 }

@@ -1,25 +1,28 @@
-import { FC, PropsWithChildren, useState } from 'react';
-import { User } from '../types/Users';
-import { AuthContext } from '../contexts/AuthContext';
-import { setToken, removeToken } from '../common/HandleToken';
-import { register, login } from '../services/auth';
-import { redirect } from 'react-router-dom';
+import { FC, PropsWithChildren, useState } from "react";
+import { User } from "../types/Users";
+import { AuthContext } from "../contexts/AuthContext";
+import { setToken, removeToken } from "../common/HandleToken";
+import { register, login } from "../services/auth";
 
 export const AuthProvider: FC<PropsWithChildren> = ({ children }) => {
   const [user, setUser] = useState<User>({
     id: 0,
-    name: '',
-    email: '',
+    name: "",
+    email: "",
   });
 
   const registerAccount = async (email: string, password: string) => {
-    const { data: { accessToken, user } } = await register(email, password);
+    const {
+      data: { accessToken, user },
+    } = await register(email, password);
     setToken(accessToken);
     setUser(user);
   };
 
   const loginAccount = async (email: string, password: string) => {
-    const { data: { accessToken, user } } = await login(email, password);
+    const {
+      data: { accessToken, user },
+    } = await login(email, password);
     setToken(accessToken);
     setUser(user);
   };
@@ -27,7 +30,7 @@ export const AuthProvider: FC<PropsWithChildren> = ({ children }) => {
   const logout = () => {
     setUser({} as User);
     removeToken();
-    redirect('/login');
+    window.location.href = "/login";
   };
 
   const values = {
@@ -35,11 +38,7 @@ export const AuthProvider: FC<PropsWithChildren> = ({ children }) => {
     registerAccount,
     loginAccount,
     logout,
-  }
+  };
 
-  return (
-    <AuthContext.Provider value={values}>
-      {children}
-    </AuthContext.Provider>
-  );
+  return <AuthContext.Provider value={values}>{children}</AuthContext.Provider>;
 };

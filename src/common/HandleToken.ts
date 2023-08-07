@@ -16,21 +16,29 @@ function isTokenValid() {
   return !!getToken();
 }
 
-async function verifyAuth() {
+async function isLogged() {
+  console.log("verifing auth");
+
   const token = getToken();
-  
-  if (token) {
-    api.defaults.headers.Authorization = `Bearer ${token}`;
-    
-    try {
-      const response = await api.get("/660");
-      return response.data;
-    } catch (error) {
-      removeToken();
-      return false;
-    }
+
+  if (!token) {
+    console.log("no token");
+
+    return false;
   }
-  return false;
+
+  api.defaults.headers.Authorization = `Bearer ${token}`;
+
+  try {
+    await api.get("/660/users");
+  } catch (error) {
+    removeToken();
+    console.log("invalid token");
+
+    return false;
+  }
+
+  return true;
 }
 
-export { setToken, getToken, removeToken, verifyAuth, isTokenValid };
+export { setToken, getToken, removeToken, isLogged, isTokenValid };

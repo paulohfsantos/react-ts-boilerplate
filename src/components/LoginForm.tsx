@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import { useAuth } from '../hooks/useAuth';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import { useAuth } from "../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 export const LoginForm: React.FC = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const { loginAccount } = useAuth();
 
@@ -12,7 +12,7 @@ export const LoginForm: React.FC = () => {
     e.preventDefault();
     try {
       await loginAccount(email, password);
-      navigate('/');
+      navigate("/");
     } catch (error) {
       throw new Error(error as string);
     }
