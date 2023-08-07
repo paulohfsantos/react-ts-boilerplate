@@ -20,7 +20,7 @@ export const LoginForm: React.FC = () => {
 
   return (
     <form
-      className="flex flex-col shadow-lg p-12 rounded-md gap-4 bg-neutral"
+      className="flex flex-col shadow-lg p-12 rounded-md gap-4"
       onSubmit={handleSubmit}
     >
       <h1 className="text-3xl font-bold mb-4">Login</h1>
@@ -38,6 +38,9 @@ export const LoginForm: React.FC = () => {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
+      <a href="/register" className="text-blue-500 text-center hover:underline">
+        Don't have an account?
+      </a>
       <button className="btn btn-primary" type="submit">
         Login
       </button>
