@@ -1,27 +1,34 @@
 import { RouteObject, createBrowserRouter, redirect } from "react-router-dom";
 import { Login } from "../pages/Login"
 import { verifyAuth } from "../common/HandleToken";
-import Register from "../pages/Register";
+
+import { Register } from "../pages/Register";
+import { Home } from "../pages/Home";
 
 const verifyLogin = async () => {
-  if (!(await verifyAuth())) {
-    throw redirect("/login");
+  try {
+    await verifyAuth();
+    redirect('/');
+  } catch (error) {
+    return redirect('/login');
   }
-  return true;
+  return null;
 }
 
 const routes: RouteObject[] = [
   {
     path: "/login",
     element: <Login />,
+    loader: verifyLogin,
   },
   {
     path: "/register",
     element: <Register />,
+    loader: verifyLogin,
   },
   {
     path: "/",
-    element: <h1>Home</h1>,
+    element: <Home />,
     loader: verifyLogin,
   }
 ]

@@ -1,7 +1,7 @@
 import React from 'react'
 import { RegisterForm } from '../components/RegisterForm'
 
-const Register: React.FC = () => {
+export const Register: React.FC = () => {
   return (
     <div>
       <h2>Register Page</h2>
@@ -10,5 +10,3 @@ const Register: React.FC = () => {
     </div>
   )
 }
-
-export default Register

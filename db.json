@@ -2,13 +2,8 @@
   "users": [
     {
       "email": "paulohfsantos1@gmail.com",
-      "password": "$2a$10$JTTYf1eNtngXrqXHOzV0k.2WBWBcOt7o4RVITgLIejTk/qJQIvxDi",
+      "password": "$2a$10$bkhvRx24yoBm8XsRNOwZWuxQ0jZqdUlJVIVwmupt5VovpbiDE5Uxa",
       "id": 1
-    },
-    {
-      "email": "paulohfsantos2@gmail.com",
-      "password": "$2a$10$x9h9DrP8r4RKfBRD8XxLguubg3kD9iewOHOp8KUxC3NC308oLTBjO",
-      "id": 2
     }
   ]
 }

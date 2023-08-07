@@ -1,8 +1,9 @@
 import { FC, PropsWithChildren, useState } from 'react';
 import { User } from '../types/Users';
 import { AuthContext } from '../contexts/AuthContext';
-import { setToken as setUpToken, removeToken } from '../common/HandleToken';
+import { setToken, removeToken } from '../common/HandleToken';
 import { register, login } from '../services/auth';
+import { redirect } from 'react-router-dom';
 
 export const AuthProvider: FC<PropsWithChildren> = ({ children }) => {
   const [user, setUser] = useState<User>({
@@ -12,20 +13,21 @@ export const AuthProvider: FC<PropsWithChildren> = ({ children }) => {
   });
 
   const registerAccount = async (email: string, password: string) => {
-    const { data: { user, token } } = await register(email, password);
-    setUpToken(token);
+    const { data: { accessToken, user } } = await register(email, password);
+    setToken(accessToken);
     setUser(user);
-  }
+  };
 
   const loginAccount = async (email: string, password: string) => {
-    const { data: { user, token } } = await login(email, password);
-    setUpToken(token);
+    const { data: { accessToken, user } } = await login(email, password);
+    setToken(accessToken);
     setUser(user);
   };
 
   const logout = () => {
     setUser({} as User);
     removeToken();
+    redirect('/login');
   };
 
   const values = {

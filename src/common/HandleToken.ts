@@ -12,6 +12,10 @@ function removeToken() {
   localStorage.removeItem("authToken");
 }
 
+function isTokenValid() {
+  return !!getToken();
+}
+
 async function verifyAuth() {
   const token = getToken();
   
@@ -29,4 +33,4 @@ async function verifyAuth() {
   return false;
 }
 
-export { setToken, getToken, removeToken, verifyAuth };
+export { setToken, getToken, removeToken, verifyAuth, isTokenValid };
