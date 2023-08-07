@@ -1,43 +1,70 @@
-import React, { useState } from "react";
 import { useAuth } from "../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-hot-toast";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { useEffect } from "react";
+
+interface IFormInput {
+  email: string;
+  password: string;
+}
 
 export const LoginForm: React.FC = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const { loginAccount } = useAuth();
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const schema = z.object({
+    email: z.string().email({ message: "Must be a valid email" }),
+    password: z.string().min(8, { message: "Must be at least 8 characters" }),
+  });
+
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = useForm<IFormInput>({
+    resolver: zodResolver(schema),
+  });
+
+  const onSubmit = handleSubmit(async (data) => {
     try {
-      await loginAccount(email, password);
+      await loginAccount(data.email, data.password);
       navigate("/");
-    } catch (error) {
-      throw new Error(error as string);
+    } catch (error: any) {
+      toast.error(error.message);
     }
-  };
+  });
+
+  useEffect(() => {
+    console.log(errors);
+  }, [errors]);
 
   return (
     <form
       className="flex flex-col shadow-lg p-12 rounded-md gap-4"
-      onSubmit={handleSubmit}
+      onSubmit={onSubmit}
     >
       <h1 className="text-3xl font-bold mb-4">Login</h1>
       <input
         className="input input-bordered"
         type="email"
         placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
+        {...register("email", { required: true })}
       />
+      {errors.email && (
+        <span className="text-red-500">{errors.email.message}</span>
+      )}
       <input
         className="input border input-bordered"
         type="password"
         placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
+        {...register("password", { required: true })}
       />
+      {errors.password && (
+        <span className="text-red-500">{errors.password.message}</span>
+      )}
       <a href="/register" className="text-blue-500 text-center hover:underline">
         Don't have an account?
       </a>

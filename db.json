@@ -9,6 +9,11 @@
       "email": "a@a.com",
       "password": "$2a$10$UFUVLWQXmHh9xQ7L/jFGPuOwwaGfrbrjFVFzNiARQkuZJnDpCQoE6",
       "id": 2
+    },
+    {
+      "email": "b@b.com",
+      "password": "$2a$10$9EGlX89EfHrYsiaDYADes.NM4hnS37Gn44lKqP64sq23J5VzdQldm",
+      "id": 3
     }
   ]
 }

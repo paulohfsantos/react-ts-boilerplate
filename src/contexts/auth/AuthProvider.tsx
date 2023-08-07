@@ -1,8 +1,8 @@
 import { FC, PropsWithChildren, useState } from "react";
-import { User } from "../types/Users";
-import { AuthContext } from "../contexts/AuthContext";
-import { setToken, removeToken } from "../common/HandleToken";
-import { register, login } from "../services/auth";
+import { setToken, removeToken } from "../../common/HandleToken";
+import { register, login } from "../../services/auth";
+import { User } from "../../types/Users";
+import { AuthContext } from "./AuthContext";
 
 export const AuthProvider: FC<PropsWithChildren> = ({ children }) => {
   const [user, setUser] = useState<User>({
