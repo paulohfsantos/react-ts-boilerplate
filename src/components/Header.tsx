@@ -1,12 +1,31 @@
 import { useEffect } from "react";
-import { themeChange } from "theme-change";
 import { useTheme } from "../hooks/useTheme";
+import { themeChange } from "theme-change";
 
 export const Header = () => {
-  const { themes } = useTheme();
-
-  console.log(themes);
-  
+  const themes = [
+    "light",
+    "dark",
+    "cupcake",
+    "bumblebee",
+    "emerald",
+    "corporate",
+    "synthwave",
+    "retro",
+    "cyberpunk",
+    "valentine",
+    "halloween",
+    "garden",
+    "forest",
+    "aqua",
+    "lofi",
+    "pastel",
+    "fantasy",
+    "wireframe",
+    "black",
+    "luxury",
+    "dracula",
+  ];
 
   useEffect(() => {
     themeChange(false);

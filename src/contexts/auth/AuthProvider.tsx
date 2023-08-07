@@ -1,8 +1,9 @@
-import { FC, PropsWithChildren, useState } from "react";
+import { FC, PropsWithChildren, useEffect, useState } from "react";
 import { setToken, removeToken } from "../../common/HandleToken";
 import { User } from "../../types/Users";
 import { AuthContext } from "./AuthContext";
 import { AuthService } from "../../services/auth";
+import { themeChange } from "theme-change";
 
 export const AuthProvider: FC<PropsWithChildren> = ({ children }) => {
   const [user, setUser] = useState<User>({
@@ -39,6 +40,11 @@ export const AuthProvider: FC<PropsWithChildren> = ({ children }) => {
     loginAccount,
     logout,
   };
+
+  useEffect(() => {
+    themeChange(false);
+    // 👆 false parameter is required for react project
+  }, []);
 
   return <AuthContext.Provider value={values}>{children}</AuthContext.Provider>;
 };
