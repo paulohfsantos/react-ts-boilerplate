@@ -17,13 +17,9 @@ function isTokenValid() {
 }
 
 async function isLogged() {
-  console.log("verifing auth");
-
   const token = getToken();
 
   if (!token) {
-    console.log("no token");
-
     return false;
   }
 
@@ -33,8 +29,6 @@ async function isLogged() {
     await api.get("/660/users");
   } catch (error) {
     removeToken();
-    console.log("invalid token");
-
     return false;
   }
 

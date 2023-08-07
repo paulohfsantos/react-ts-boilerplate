@@ -4,8 +4,6 @@ import { toast } from "react-hot-toast";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { useEffect } from "react";
-// import { AxiosError } from "axios";
 
 interface IFormInput {
   email: string;
@@ -37,10 +35,6 @@ export const LoginForm: React.FC = () => {
       toast.error(error.response.data);
     }
   });
-
-  useEffect(() => {
-    console.log(errors);
-  }, [errors]);
 
   return (
     <form
